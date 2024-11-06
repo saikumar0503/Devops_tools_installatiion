@@ -1,0 +1,30 @@
+Installation of jenkins
+-----------------------
+Installation of jenkins in ubuntu is given step by step
+ 
+#To update & update the packages
+sudo apt update
+sudo apt upgrade -y
+
+#To install the java for jenkins (we need jdk-11 or jdk-17 for jenkins)
+sudo apt install openjdk-11-jdk -y
+
+# To install the latest jenkins version we need to  add the jenkins repository 
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+
+#Add the jenkins Debian package repository:
+sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# update the packages & Install jenkins
+sudo apt update
+sudo apt install jenkins -y
+ 
+#To start the jenkins
+sudo systemctl start jenkins
+
+#To enable the jenkons service
+sudo systemctl enable jenkins
+ 
+
+#To find the jenkins password for login jenkins dashbord
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword

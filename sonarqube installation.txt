@@ -1,0 +1,47 @@
+install the sonarqube
+-----------------------
+To install sonarqube what we need
+1.Above 2GB ram
+2.Port number 9000
+
+above 2 requiremets are impotant
+
+Follow the below step to install sonaqube in our linux system
+
+step:1---> First we need to update the server
+   # yum update -y  for amazon linux
+   # apt update -y  for ubuntu
+   
+step:2---> To install the sinarqube we need java-11 version so wee need to install jdk-11
+   # sudo yum install -y java-11-amazon-corretto   (For amazon linux)
+   # sudo apt install openjdk-11-jdk -y   (For ubuntu)
+ 
+step:3---> next we need to download the sonarqube zip file
+   #wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.9.10.61524.zip
+   
+step:4--->unzip the file
+   #unzip sonarqube-8.9.10.61524.zip
+   
+step:5--->rename the file
+   # mv sonarqube-8.9.10.61424.zp sonarqube
+
+step:6---> Sonarqube is run on non root priviliages so we need to create a use and give the owner ship of sonarqube to that user
+   #useradd sonar --->To create the user 
+   #passwd sonar ---->To give the password to user
+   #chwon -R sonar:sonar sonarqube/  -----> To change the  ownership to 
+
+step:7--->After giving the ownership we need to edit the sonar.sh file 
+   #cd /sonarqube/bin/linux-x86-64/
+   #vi sonar.sh ---> In this file edit the user which we have created 
+    "(RUN_AS_USER=sonar)"
+	
+step:8---->Reload the service
+   #sudo systemctl daemon-reload
+
+step:9---->start the sonarqube
+   #sh sonar.sh start  ---> To start the sonarqube
+   #sh sonar.sh stop   ---> To stop the sonarqube
+   #sh sonar.sh restart --> To restart the sonarqube   
+
+step10:--->check the sonarqube open any browser and check it
+   #<public ip address>:9000   
